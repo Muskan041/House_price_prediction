@@ -1,0 +1,220 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "f625619e-d308-4323-8e34-093829c35b87",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: streamlit in c:\\users\\hp\\anaconda3\\lib\\site-packages (1.51.0)\n",
+      "Requirement already satisfied: altair!=5.4.0,!=5.4.1,<6,>=4.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (5.5.0)\n",
+      "Requirement already satisfied: blinker<2,>=1.5.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (1.9.0)\n",
+      "Requirement already satisfied: cachetools<7,>=4.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (5.5.1)\n",
+      "Requirement already satisfied: click<9,>=7.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (8.2.1)\n",
+      "Requirement already satisfied: numpy<3,>=1.23 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (2.3.5)\n",
+      "Requirement already satisfied: packaging<26,>=20 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (25.0)\n",
+      "Requirement already satisfied: pandas<3,>=1.4.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (2.3.3)\n",
+      "Requirement already satisfied: pillow<13,>=7.1.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (12.0.0)\n",
+      "Collecting protobuf<7,>=3.20 (from streamlit)\n",
+      "  Downloading protobuf-6.33.6-cp310-abi3-win_amd64.whl.metadata (593 bytes)\n",
+      "Requirement already satisfied: pyarrow<22,>=7.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (21.0.0)\n",
+      "Requirement already satisfied: requests<3,>=2.27 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (2.32.5)\n",
+      "Requirement already satisfied: tenacity<10,>=8.1.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (9.1.2)\n",
+      "Requirement already satisfied: toml<2,>=0.10.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (0.10.2)\n",
+      "Requirement already satisfied: typing-extensions<5,>=4.4.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (4.15.0)\n",
+      "Requirement already satisfied: watchdog<7,>=2.1.5 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (4.0.2)\n",
+      "Requirement already satisfied: gitpython!=3.1.19,<4,>=3.0.7 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (3.1.45)\n",
+      "Requirement already satisfied: tornado!=6.5.0,<7,>=6.0.3 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from streamlit) (6.5.1)\n",
+      "Requirement already satisfied: jinja2 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (3.1.6)\n",
+      "Requirement already satisfied: jsonschema>=3.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (4.25.0)\n",
+      "Requirement already satisfied: narwhals>=1.14.2 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (2.7.0)\n",
+      "Requirement already satisfied: colorama in c:\\users\\hp\\anaconda3\\lib\\site-packages (from click<9,>=7.0->streamlit) (0.4.6)\n",
+      "Requirement already satisfied: gitdb<5,>=4.0.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from gitpython!=3.1.19,<4,>=3.0.7->streamlit) (4.0.12)\n",
+      "Requirement already satisfied: smmap<6,>=3.0.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from gitdb<5,>=4.0.1->gitpython!=3.1.19,<4,>=3.0.7->streamlit) (4.0.0)\n",
+      "Requirement already satisfied: python-dateutil>=2.8.2 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from pandas<3,>=1.4.0->streamlit) (2.9.0.post0)\n",
+      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from pandas<3,>=1.4.0->streamlit) (2025.2)\n",
+      "Requirement already satisfied: tzdata>=2022.7 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from pandas<3,>=1.4.0->streamlit) (2025.2)\n",
+      "Requirement already satisfied: charset_normalizer<4,>=2 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (3.4.4)\n",
+      "Requirement already satisfied: idna<4,>=2.5 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (3.11)\n",
+      "Requirement already satisfied: urllib3<3,>=1.21.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2.5.0)\n",
+      "Requirement already satisfied: certifi>=2017.4.17 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2026.5.20)\n",
+      "Requirement already satisfied: attrs>=22.2.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (25.4.0)\n",
+      "Requirement already satisfied: jsonschema-specifications>=2023.03.6 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (2025.9.1)\n",
+      "Requirement already satisfied: referencing>=0.28.4 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (0.37.0)\n",
+      "Requirement already satisfied: rpds-py>=0.7.1 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (0.28.0)\n",
+      "Requirement already satisfied: six>=1.5 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from python-dateutil>=2.8.2->pandas<3,>=1.4.0->streamlit) (1.17.0)\n",
+      "Requirement already satisfied: MarkupSafe>=2.0 in c:\\users\\hp\\anaconda3\\lib\\site-packages (from jinja2->altair!=5.4.0,!=5.4.1,<6,>=4.0->streamlit) (3.0.2)\n",
+      "Downloading protobuf-6.33.6-cp310-abi3-win_amd64.whl (437 kB)\n",
+      "Installing collected packages: protobuf\n",
+      "  Attempting uninstall: protobuf\n",
+      "    Found existing installation: protobuf 7.35.1\n",
+      "    Uninstalling protobuf-7.35.1:\n",
+      "      Successfully uninstalled protobuf-7.35.1\n",
+      "Successfully installed protobuf-6.33.6\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "  WARNING: Failed to remove contents in a temporary directory 'C:\\Users\\HP\\anaconda3\\Lib\\site-packages\\google\\~upb'.\n",
+      "  You can safely remove it manually.\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install streamlit"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "d36e9bba-cbf8-4deb-acac-b80922ee2c18",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2026-07-29 20:32:38.329 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.046 \n",
+      "  \u001b[33m\u001b[1mWarning:\u001b[0m to view this Streamlit app on a browser, run it with the following\n",
+      "  command:\n",
+      "\n",
+      "    streamlit run C:\\Users\\HP\\anaconda3\\Lib\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n",
+      "2026-07-29 20:32:39.046 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.048 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.048 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.049 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.049 Session state does not function when running a script without `streamlit run`\n",
+      "2026-07-29 20:32:39.050 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.050 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.051 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.052 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.052 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.053 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.054 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.055 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.056 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.056 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.057 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.058 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.058 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.059 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.059 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.060 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.060 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.061 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.061 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.062 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.062 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.063 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.063 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.064 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.064 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.065 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.065 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.066 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.067 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.068 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.069 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.070 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.071 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.071 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.073 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.073 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.074 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.075 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.076 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.076 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.077 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.078 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.079 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.079 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.080 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.080 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.081 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.081 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.082 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
+      "2026-07-29 20:32:39.082 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n"
+     ]
+    }
+   ],
+   "source": [
+    "import streamlit as st\n",
+    "import tensorflow as tf\n",
+    "import numpy as np\n",
+    "\n",
+    "# Load trained model\n",
+    "model = tf.keras.models.load_model(\"house_price_model.keras\")\n",
+    "\n",
+    "st.title(\" House Price Prediction\")\n",
+    "\n",
+    "bedrooms = st.number_input(\"Bedrooms\", min_value=0)\n",
+    "bathrooms = st.number_input(\"Bathrooms\", min_value=0.0)\n",
+    "sqft_living = st.number_input(\"Sqft Living\", min_value=0)\n",
+    "sqft_lot = st.number_input(\"Sqft Lot\", min_value=0)\n",
+    "floors = st.number_input(\"Floors\", min_value=1.0)\n",
+    "sqft_above = st.number_input(\"Sqft Above\", min_value=0)\n",
+    "sqft_basement = st.number_input(\"Sqft Basement\", min_value=0)\n",
+    "\n",
+    "if st.button(\"Predict Price\"):\n",
+    "\n",
+    "    input_data = np.array([[bedrooms,\n",
+    "                            bathrooms,\n",
+    "                            sqft_living,\n",
+    "                            sqft_lot,\n",
+    "                            floors,\n",
+    "                            sqft_above,\n",
+    "                            sqft_basement]])\n",
+    "\n",
+    "    prediction = model.predict(input_data)\n",
+    "\n",
+    "    st.success(f\"Predicted House Price: {prediction[0][0]}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4d88399c-2307-49b6-bf95-6950f8ec1d22",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
